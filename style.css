@@ -40,17 +40,23 @@ h1, h2 {
 
 .board-wrapper {
     display: grid;
-    grid-template-areas: ". top ." "left board right" ". bottom .";
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto 1fr auto;
-    gap: 8px;
+    grid-template-areas:
+        ".    top    ."
+        "left board  right"
+        ".    bottom .";
+    /* DIUBAH: Gunakan unit relatif (vw) untuk kolom agar fluid */
+    grid-template-columns: 6vw 1fr 6vw;
+    grid-template-rows: 6vw 1fr 6vw;
+    
+    /* DIUBAH: Gunakan clamp() untuk jarak yang fleksibel */
+    gap: clamp(4px, 1.5vw, 12px);
+    padding: clamp(8px, 2.5vw, 20px);
+    
     margin: 20px auto;
-    padding: 10px;
-    width: 95vw;
-    max-width: 600px;
-    background-color: #fff; /* Memberi latar putih agar bayangan terlihat */
+    width: 90vw; /* Sedikit lebih kecil agar ada margin di sisi */
+    max-width: 700px; /* Ukuran maks di desktop */
+    background-color: #fff;
     border-radius: 12px;
-    /* BARU: Efek bayangan halus */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -68,7 +74,12 @@ h1, h2 {
 .label-left, .label-right { grid-area: var(--area); display: flex; flex-direction: column; justify-content: space-around; }
 .label-top { --area: top; } .label-bottom { --area: bottom; } .label-left { --area: left; } .label-right { --area: right; }
 
-.label-item { font-weight: 700; color: var(--text-color); }
+.label-item {
+    font-weight: 700;
+    color: var(--text-color);
+    /* DIUBAH: Gunakan clamp() untuk ukuran font yang fleksibel */
+    font-size: clamp(0.6rem, 2.5vw, 1rem);
+}
 
 .cell {
     aspect-ratio: 1 / 1;
