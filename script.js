@@ -181,8 +181,10 @@ function askQuestion() {
   document
     .querySelectorAll(".palette-btn")
     .forEach((btn) => btn.classList.remove("active"));
+
   questionCoords.row = Math.floor(Math.random() * (GRID_SIZE - 2));
   questionCoords.col = Math.floor(Math.random() * (GRID_SIZE - 2));
+
   answerBoard.innerHTML = "";
   for (let i = 0; i < 9; i++) {
     const cell = document.createElement("div");
@@ -190,11 +192,19 @@ function askQuestion() {
     const c_offset = i % 3;
     const actualRow = questionCoords.row + r_offset;
     const actualCol = questionCoords.col + c_offset;
+
     cell.className = "answer-cell";
     cell.dataset.index = i;
-    cell.placeholder = `${String.fromCharCode(65 + actualCol)}${actualRow + 1}`;
+
+    // DIUBAH: Menggunakan data-attribute untuk placeholder
+    const placeholderText = `${String.fromCharCode(65 + actualCol)}${
+      actualRow + 1
+    }`;
+    cell.dataset.placeholder = placeholderText;
+
     answerBoard.appendChild(cell);
   }
+
   const colLetter = String.fromCharCode(65 + questionCoords.col);
   const title = `Pertanyaan ${currentQuestion} / ${TOTAL_QUESTIONS}`;
   const text = `Isi blok 3x3 yang dimulai dari koordinat <strong>${colLetter}${

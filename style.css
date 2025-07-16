@@ -85,22 +85,39 @@ h1, h2 {
 #reveal-phase-container { display: flex; flex-direction: column; align-items: center; gap: 30px; }
 #answer-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 210px; margin: 10px auto; }
 .answer-cell {
+    position: relative; /* Diperlukan untuk pseudo-element */
     width: 100%;
     aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8em;
     font-weight: 700;
     border: 2px solid #ddd;
     background-color: #fff;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.2s;
     border-radius: 8px;
+    font-size: 1.8em; /* Ukuran untuk jawaban yang diisi */
+    color: var(--text-color);
 }
-.answer-cell:hover { background-color: #f1f1f1; transform: translateY(-2px); }
-.answer-cell.filled { color: var(--text-color); }
-.answer-cell::placeholder { font-size: 0.8em; color: #aaa; }
+
+/* Style untuk menampilkan placeholder */
+.answer-cell::before {
+    content: attr(data-placeholder); /* Ambil teks dari data-placeholder */
+    color: #b0a8a8;
+    font-size: 0.8rem; /* Ukuran font placeholder lebih kecil */
+    position: absolute;
+}
+
+/* Sembunyikan placeholder jika sel sudah diisi */
+.answer-cell.filled::before {
+    display: none;
+}
+
+.answer-cell:hover {
+    background-color: #f1f1f1;
+    transform: translateY(-2px);
+}
 
 
 #input-palette { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
