@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Combat Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="logo.png" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Memory Combat Game</h1>
+
+      <div id="setup-area">
+        <div id="grid-size-selection">
+          <h2>1. Pilih Ukuran Papan</h2>
+          <div class="options-group">
+            <button class="size-btn" data-size="5">5x5</button>
+            <button class="size-btn" data-size="7">7x7</button>
+            <button class="size-btn" data-size="10" class="active">
+              10x10
+            </button>
+          </div>
+        </div>
+
+        <div id="time-selection" style="display: none">
+          <h2>2. Pilih Waktu Menghafal</h2>
+          <div id="time-options" class="options-group">
+            <button class="time-btn" data-time="60">1 Menit</button>
+            <button class="time-btn" data-time="180">3 Menit</button>
+            <button class="time-btn" data-time="300">5 Menit</button>
+            <button class="time-btn" data-time="0">Mode Latihan</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="game-status-area" style="display: none">
+        <p>Sisa Waktu: <span id="timer"></span></p>
+        <button id="proceed-to-recall-button" style="display: none">
+          Selesai Menghafal
+        </button>
+      </div>
+
+      <div id="game-board-wrapper" class="board-wrapper" style="display: none">
+        <div class="label-top"></div>
+        <div class="label-left"></div>
+        <div id="game-board" class="board"></div>
+        <div class="label-right"></div>
+        <div class="label-bottom"></div>
+      </div>
+
+      <div id="recall-instruction-area" style="display: none">
+        <h2>Fase Mencatat</h2>
+        <p>
+          Waktu habis! Silakan catat semua yang Anda ingat di kertas atau buku
+          catatan Anda. Tekan tombol di bawah jika sudah siap untuk diuji.
+        </p>
+        <button id="proceed-to-reveal-button">Lanjutkan ke Ujian</button>
+      </div>
+
+      <div id="reveal-phase-container" style="display: none">
+        <div id="question-area">
+          <h2>Papan Jawaban (3x3)</h2>
+          <div id="answer-board"></div>
+          <div id="input-palette">
+            <button class="palette-btn" data-value="diamond">💎</button>
+            <button class="palette-btn" data-value="0">0</button>
+            <button class="palette-btn" data-value="1">1</button>
+            <button class="palette-btn" data-value="2">2</button>
+            <button class="palette-btn" data-value="3">3</button>
+            <button class="palette-btn" data-value="4">4</button>
+            <button class="palette-btn" data-value="5">5</button>
+            <button class="palette-btn" data-value="6">6</button>
+            <button class="palette-btn" data-value="7">7</button>
+            <button class="palette-btn" data-value="8">8</button>
+          </div>
+          <button id="submit-answer-button">Kunci Jawaban</button>
+        </div>
+
+        <div id="score-area" style="display: none">
+          <h2>Hasil Ronde</h2>
+          <p>Total Poin: <span id="total-score">0</span></p>
+          <button id="next-question-button">Pertanyaan Berikutnya</button>
+          <button id="play-again-button" style="display: none">
+            Main Lagi
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div id="modal-overlay" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <h2 id="modal-title"></h2>
+        <p id="modal-text"></p>
+        <button id="modal-close-button">Mengerti</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
